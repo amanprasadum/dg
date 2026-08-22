@@ -102,7 +102,7 @@ h1,h2,h3,h4,h5,h6{
 /* ── HERO ────────────────────────────────────────────── */
 .hero{
   background:linear-gradient(120deg,#EDF4FF 0%,#F5F8FF 60%,#EAF7EF 100%);
-  padding:80px 0 60px;overflow:hidden;position:relative;min-height:600px;
+  padding:70px 0 0;overflow:hidden;position:relative;
 }
 .hero::after{
   content:'';position:absolute;
@@ -118,31 +118,6 @@ h1,h2,h3,h4,h5,h6{
   width:420px;height:420px;border-radius:50%;
   background:radial-gradient(circle,rgba(0,200,83,.09) 0%,transparent 70%);
   pointer-events:none;
-}
-.hero-container{position:relative;z-index:2}
-.hero-em-gradient{
-  font-style:normal;
-  background:linear-gradient(90deg,var(--blue) 0%,var(--green2) 100%);
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
-}
-.hero-shimmer-ring{
-  position:absolute;right:-80px;top:50%;transform:translateY(-50%);
-  width:600px;height:600px;border-radius:50%;
-  border:1px dashed rgba(20,100,244,.15);
-  pointer-events:none;z-index:0;
-  animation:ringRotate 30s linear infinite;
-}
-.hero-shimmer-ring::after{
-  content:'';position:absolute;top:40px;left:40px;right:40px;bottom:40px;
-  border-radius:50%;border:1px dashed rgba(0,200,83,.12);
-}
-@keyframes ringRotate{0%{transform:translateY(-50%) rotate(0deg)}100%{transform:translateY(-50%) rotate(360deg)}}
-.hero-img-wrap{display:inline-block;position:relative}
-.hero-img-glow{
-  position:absolute;bottom:-30px;left:50%;transform:translateX(-50%);
-  width:70%;height:60px;
-  background:radial-gradient(ellipse,rgba(20,100,244,.2) 0%,transparent 70%);
-  filter:blur(18px);pointer-events:none;z-index:0;
 }
 .hero-eyebrow{
   display:inline-flex;align-items:center;gap:7px;
@@ -562,8 +537,6 @@ footer ul li a i{font-size:.76rem}
 /* ── REVEAL ANIMATION (fallback for no-JS / non-hero sections) ── */
 .rv{opacity:0;transform:translateY(26px);transition:opacity .55s ease,transform .55s ease}
 .rv.show{opacity:1;transform:none}
-/* Hero elements are always visible — GSAP animates them from code */
-.hero .rv{opacity:1!important;transform:none!important}
 .d1{transition-delay:.1s}.d2{transition-delay:.18s}.d3{transition-delay:.26s}.d4{transition-delay:.34s}
 
 /* ── CITY PAGE HERO (simplified inner-page hero) ─────── */
@@ -641,7 +614,7 @@ footer ul li a i{font-size:.76rem}
   66%{transform:translate(-14px,14px) scale(0.95)}
 }
 /* Ensure container sits above animated bg */
-.hero>.container{position:relative;z-index:2}
+.hero>.container{position:relative;z-index:1}
 
 /* ── PROCESS STEPS V2 ────────────────────────────────────── */
 .step-card-v2{
@@ -663,8 +636,6 @@ footer ul li a i{font-size:.76rem}
 .step-card-v2.final-card::before{
   background:linear-gradient(90deg,var(--blue),var(--green));
 }
-/* Remove top border on step-no-border variant */
-.step-card-v2.step-no-border::before{display:none}
 .step-card-v2:hover{
   transform:translateY(-7px);
   box-shadow:0 20px 48px rgba(20,100,244,.13);
@@ -839,81 +810,220 @@ footer ul li a i{font-size:.76rem}
   .saas-live-label{display:none}
 }
 
-/* ── STATE HIGHLIGHT on search/click ────────────────────── */
-.dist-link.state-highlight{
-  color:#fff!important;
-  padding-left:6px;
-  font-weight:800;
+/* ══════════════════════════════════════════════════════════
+   DGLIANCE v2 — States · Map · Green CTA · Hero Particles
+   ══════════════════════════════════════════════════════════ */
+
+/* ── HERO: extra blob + particle animation ───────────────── */
+.hero-blob-accent{
+  width:200px;height:200px;
+  background:rgba(20,100,244,.07);
+  top:40%;left:-60px;
+  animation-delay:-3s;
 }
-.dist-link.state-highlight i{color:var(--green)!important}
-.dist-col-box.col-highlight{
-  background:rgba(0,200,83,.08);
-  box-shadow:0 0 0 1.5px rgba(0,200,83,.4),0 0 20px rgba(0,200,83,.12);
-  animation:stateGlow 1.5s ease-out;
+.hero-particles{position:absolute;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.hero-particle{
+  position:absolute;bottom:-20px;border-radius:50%;
+  animation:particleRise linear infinite;
+  opacity:0;
 }
-@keyframes stateGlow{
-  0%{box-shadow:0 0 0 3px rgba(0,200,83,.5),0 0 40px rgba(0,200,83,.25)}
-  100%{box-shadow:0 0 0 1.5px rgba(0,200,83,.4),0 0 20px rgba(0,200,83,.12)}
+@keyframes particleRise{
+  0%{transform:translateY(0) scale(1);opacity:0}
+  8%{opacity:.8}
+  90%{opacity:.3}
+  100%{transform:translateY(-680px) scale(0.4) rotate(180deg);opacity:0}
 }
 
-/* ── GREEN BIG CTA ───────────────────────────────────────── */
-.big-cta-green{
-  background:linear-gradient(135deg,#003D20 0%,#005C2E 45%,#00431F 100%)!important;
+/* ── STATES SECTION ─────────────────────────────────────── */
+.states-sec{background:#fff;padding:var(--sec-py) 0}
+
+/* Search light-theme overrides */
+.states-shell{
+  background:rgba(20,100,244,.03);
+  backdrop-filter:none;
+  border:1.5px solid var(--border);
+  box-shadow:0 8px 32px rgba(20,100,244,.06);
+}
+.states-row{
+  background:#fff !important;
+  border:1.5px solid var(--border) !important;
+}
+.states-row .saas-si{color:var(--muted) !important}
+.states-row input{color:var(--navy) !important}
+.states-row input::placeholder{color:#aab !important}
+.states-row:focus-within{border-color:var(--green) !important}
+.saas-kbd-light{
+  background:var(--body-bg) !important;
+  border-color:var(--border) !important;
+  color:var(--muted) !important;
+}
+.states-filter-bar{padding:4px 6px 8px}
+.sft-light{
+  color:var(--muted) !important;
+  border-color:var(--border) !important;
+  background:transparent !important;
+}
+.sft-light:hover{background:var(--body-bg) !important;color:var(--navy) !important}
+.sft-light.active{
+  background:var(--green2) !important;
+  border-color:var(--green2) !important;
+  color:#fff !important;
+  box-shadow:0 4px 14px rgba(0,168,67,.3) !important;
+}
+.states-hint{color:var(--muted) !important}
+.states-hint.found{color:var(--green2) !important}
+
+/* State region cards — dual-CTA palette */
+.state-region-card{
+  border-radius:20px;padding:26px 22px 24px;height:100%;
+  border:1.5px solid transparent;
   position:relative;overflow:hidden;
+  transition:transform .28s,box-shadow .3s,border-color .3s;
 }
-.big-cta-green h2{color:#fff}
-.big-cta-green p{color:rgba(255,255,255,.82)}
-.cta-leaf{
-  position:absolute;border-radius:50% 0 50% 0;
-  background:rgba(255,255,255,.06);pointer-events:none;
+.state-region-card:hover{transform:translateY(-7px)}
+
+.src-north{background:linear-gradient(145deg,#EDF4FF,#DDE9FF);border-color:rgba(20,100,244,.18)}
+.src-north:hover{box-shadow:0 20px 50px rgba(20,100,244,.14);border-color:rgba(20,100,244,.4)}
+.src-south{background:linear-gradient(145deg,#E8FAF4,#D5F5E8);border-color:rgba(0,200,83,.18)}
+.src-south:hover{box-shadow:0 20px 50px rgba(0,200,83,.14);border-color:rgba(0,168,67,.4)}
+.src-west{background:linear-gradient(145deg,#FDFBE0,#F7F3C8);border-color:rgba(220,170,0,.22)}
+.src-west:hover{box-shadow:0 20px 50px rgba(220,170,0,.14);border-color:rgba(220,170,0,.5)}
+.src-east{background:linear-gradient(145deg,#F0EBFF,#E4DCFF);border-color:rgba(123,95,240,.18)}
+.src-east:hover{box-shadow:0 20px 50px rgba(123,95,240,.12);border-color:rgba(123,95,240,.4)}
+
+.src-header{display:flex;align-items:center;gap:14px;margin-bottom:18px}
+.src-icon{
+  width:50px;height:50px;border-radius:14px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;font-size:1.3rem;
 }
-.cta-leaf-1{width:320px;height:320px;top:-80px;left:-60px;transform:rotate(25deg)}
-.cta-leaf-2{width:260px;height:260px;bottom:-70px;right:60px;transform:rotate(-15deg)}
-.cta-orb{
-  position:absolute;border-radius:50%;
-  background:rgba(255,255,255,.05);pointer-events:none;
-  animation:ctaOrbFloat 8s ease-in-out infinite;
+.src-icon.blue-icon{background:rgba(20,100,244,.12);color:var(--blue)}
+.src-icon.green-icon{background:rgba(0,200,83,.13);color:var(--green2)}
+.src-icon.amber-icon{background:rgba(220,170,0,.15);color:#b87d00}
+.src-icon.purple-icon{background:rgba(123,95,240,.12);color:#7B5FF0}
+
+.src-title-wrap{}
+.src-label{font-family:'Nunito',sans-serif;font-weight:900;font-size:1.05rem;color:var(--navy)}
+.src-count{font-size:.74rem;font-weight:700;color:var(--muted)}
+.src-divider{height:1px;background:rgba(0,0,0,.07);margin:0 0 18px}
+
+/* State chips */
+.state-chips-wrap{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
+.state-chip{
+  position:relative;display:inline-flex;align-items:center;
+  padding:6px 14px;border-radius:50px;
+  background:rgba(255,255,255,.72);
+  color:var(--navy);font-size:.82rem;font-weight:700;
+  text-decoration:none;border:2px solid transparent;
+  transition:all .22s;font-family:'Nunito',sans-serif;
+  backdrop-filter:blur(6px);
 }
-.cta-orb-1{width:200px;height:200px;top:-60px;right:-30px;animation-delay:0s}
-.cta-orb-2{width:140px;height:140px;bottom:-40px;left:20%;animation-delay:-4s}
-@keyframes ctaOrbFloat{
-  0%,100%{transform:translateY(0) scale(1)}
-  50%{transform:translateY(-16px) scale(1.06)}
+.state-chip:hover{background:#fff;transform:translateY(-1px)}
+.src-north .state-chip:hover{border-color:rgba(20,100,244,.5);color:var(--blue)}
+.src-south .state-chip:hover{border-color:rgba(0,168,67,.5);color:var(--green2)}
+.src-west .state-chip:hover{border-color:rgba(180,125,0,.5);color:#b87d00}
+.src-east .state-chip:hover{border-color:rgba(123,95,240,.5);color:#7B5FF0}
+
+/* Search highlight states */
+.state-chip.highlighted{
+  background:rgba(0,200,83,.15) !important;
+  border-color:var(--green) !important;
+  color:var(--green2) !important;
+  transform:scale(1.04) !important;
+  box-shadow:0 0 0 3px rgba(0,200,83,.15),0 0 14px rgba(0,200,83,.25) !important;
+  animation:chipPop .4s cubic-bezier(.34,1.56,.64,1) both;
 }
-.cta-green-badge{
-  display:inline-flex;align-items:center;gap:6px;
-  background:rgba(255,255,255,.18);color:#fff;
-  border:1px solid rgba(255,255,255,.3);
-  border-radius:50px;padding:6px 16px;
-  font-size:.78rem;font-weight:800;font-family:'Nunito',sans-serif;
-  letter-spacing:.05em;backdrop-filter:blur(6px);
+.state-chip.dimmed{opacity:.22;transform:scale(0.93)}
+@keyframes chipPop{
+  0%{transform:scale(0.88)}
+  60%{transform:scale(1.08)}
+  100%{transform:scale(1.04)}
 }
-.btn-cta-green-wh{
-  background:#fff!important;color:#00874A!important;
-  box-shadow:0 6px 22px rgba(0,0,0,.15)!important;
+/* Ripple ring on highlighted chip */
+.state-chip.highlighted::after{
+  content:'';position:absolute;inset:-5px;
+  border-radius:50px;border:2px solid var(--green);
+  animation:chipRipple 1.4s ease-out infinite;pointer-events:none;
 }
-.btn-cta-green-wh:hover{color:#005c30!important;transform:translateY(-2px)}
-.btn-cta-green-ow{
-  border-color:rgba(255,255,255,.5)!important;color:#fff!important;
+@keyframes chipRipple{
+  0%{opacity:.8;transform:scale(1)}
+  100%{opacity:0;transform:scale(1.22)}
 }
-.btn-cta-green-ow:hover{background:rgba(255,255,255,.16)!important;color:#fff!important}
+
+.src-cta{
+  display:inline-flex;align-items:center;gap:4px;
+  font-size:.8rem;font-weight:800;color:var(--navy);
+  text-decoration:none;font-family:'Nunito',sans-serif;
+  text-transform:uppercase;letter-spacing:.07em;
+  transition:gap .2s,color .2s;
+}
+.src-cta i{font-size:1.1rem;transition:transform .2s}
+.src-cta:hover i{transform:translateX(4px)}
+.src-north .src-cta:hover{color:var(--blue)}
+.src-south .src-cta:hover{color:var(--green2)}
+.src-west .src-cta:hover{color:#b87d00}
+.src-east .src-cta:hover{color:#7B5FF0}
 
 /* ── MAP SECTION ─────────────────────────────────────────── */
-.map-sec{background:#fff;padding:80px 0}
+.map-sec{background:#fff}
+.map-info-wrap{display:flex;flex-direction:column;gap:14px;margin:28px 0}
+.map-info-row{
+  display:flex;align-items:center;gap:14px;
+  color:var(--navy);font-size:.92rem;font-weight:600;
+}
+.map-info-row i{
+  width:38px;height:38px;border-radius:10px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  background:rgba(0,168,67,.1);color:var(--green2);font-size:1rem;
+}
 .map-frame-wrap{
-  position:relative;border-radius:20px;overflow:hidden;
-  box-shadow:0 18px 60px rgba(20,100,244,.12);
+  border-radius:20px;overflow:hidden;
   border:2px solid var(--border);
+  box-shadow:0 20px 60px rgba(20,100,244,.1);
+  position:relative;
 }
-.map-frame-wrap iframe{display:block;border-radius:18px}
-.map-location-badge{
-  position:absolute;top:20px;left:20px;z-index:10;
-  display:inline-flex;align-items:center;gap:8px;
-  background:#fff;border-radius:50px;
-  padding:10px 20px;
-  box-shadow:0 6px 24px rgba(0,0,0,.15);
-  font-family:'Nunito',sans-serif;font-weight:800;
-  font-size:.88rem;color:var(--navy);
-  border:1.5px solid var(--border);
+.map-frame-wrap::before{
+  content:'';position:absolute;
+  inset:0;border-radius:18px;
+  box-shadow:inset 0 0 0 2px rgba(0,168,67,.15);
+  z-index:1;pointer-events:none;
 }
-.map-location-badge i{color:var(--green2);font-size:1.05rem}
+.map-frame-wrap iframe{display:block}
+
+/* ── BIG CTA — GREEN THEME ───────────────────────────────── */
+.big-cta{
+  background:linear-gradient(135deg,#003d20 0%,#006b35 48%,var(--green2) 100%) !important;
+  position:relative;overflow:hidden;
+}
+/* Animated concentric rings */
+.cta-ring{
+  position:absolute;border-radius:50%;
+  border:1px solid rgba(0,200,83,.25);
+  pointer-events:none;
+  animation:ctaRingPulse 4s ease-in-out infinite;
+}
+.cta-ring-1{width:350px;height:350px;top:-140px;right:5%;animation-delay:0s}
+.cta-ring-2{width:220px;height:220px;top:-60px;right:12%;animation-delay:-1.4s}
+.cta-ring-3{width:180px;height:180px;bottom:-80px;left:5%;animation-delay:-2.8s}
+@keyframes ctaRingPulse{
+  0%,100%{transform:scale(1);opacity:.5}
+  50%{transform:scale(1.18);opacity:.15}
+}
+/* Glowing orb */
+.cta-glow-orb{
+  position:absolute;width:500px;height:500px;border-radius:50%;
+  background:radial-gradient(circle,rgba(0,200,83,.18) 0%,transparent 70%);
+  top:-200px;right:-100px;pointer-events:none;
+  animation:blobDrift 10s ease-in-out infinite;
+}
+
+/* ── RESPONSIVE ───────────────────────────────────────────── */
+@media(max-width:991px){
+  .state-region-card{padding:22px 18px 20px}
+  .map-info-wrap{margin:20px 0}
+  .map-frame-wrap iframe{height:320px}
+}
+@media(max-width:576px){
+  .state-chip{font-size:.78rem;padding:5px 11px}
+  .map-frame-wrap iframe{height:260px}
+  .cta-ring-1,.cta-ring-2{display:none}
+}
