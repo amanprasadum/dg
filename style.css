@@ -2320,6 +2320,46 @@ footer ul li a i {
   border-color: rgba(123, 95, 240, .4)
 }
 
+.src-northeast {
+  background: linear-gradient(145deg, #EDF4FF, #DDE9FF);
+  border-color: rgba(20, 100, 244, .18)
+}
+
+.src-northeast:hover {
+  box-shadow: 0 20px 50px rgba(20, 100, 244, .14);
+  border-color: rgba(20, 100, 244, .4)
+}
+
+.src-northeast .state-chip:hover {
+  background: #1464F4;
+  border-color: #1464F4;
+  color: #fff
+}
+
+.src-northeast .src-cta:hover {
+  color: #1464F4
+}
+
+.src-ut {
+  background: linear-gradient(145deg, #F0EBFF, #E4DCFF);
+  border-color: rgba(123, 95, 240, .18)
+}
+
+.src-ut:hover {
+  box-shadow: 0 20px 50px rgba(123, 95, 240, .12);
+  border-color: rgba(123, 95, 240, .4)
+}
+
+.src-ut .state-chip:hover {
+  background: #7B5FF0;
+  border-color: #7B5FF0;
+  color: #fff
+}
+
+.src-ut .src-cta:hover {
+  color: #7B5FF0
+}
+
 .src-header {
   display: flex;
   align-items: center;
