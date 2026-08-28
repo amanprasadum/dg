@@ -3512,6 +3512,115 @@ footer ul li a i {
   }
 }
 
+  
+
+/* ══════════════════════════════════════════════════════════
+   COMPACT FORM FIELDS — no scrollbar
+   ══════════════════════════════════════════════════════════ */
+
+.cf-group-sm {
+  margin-bottom: 10px;
+}
+
+.cf-label-sm {
+  display: block;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+  font-size: .76rem;
+  color: var(--navy);
+  margin-bottom: 4px;
+}
+
+.cf-input-sm {
+  width: 100%;
+  padding: 8px 11px;
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: .83rem;
+  color: var(--navy);
+  background: #F8FAFF;
+  transition: border-color .2s, box-shadow .2s;
+  outline: none;
+  line-height: 1.4;
+}
+
+.cf-input-sm:focus {
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px rgba(20,100,244,.08);
+  background: #fff;
+}
+
+.cf-select-sm {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%236B7A99' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  padding-right: 28px;
+  cursor: pointer;
+}
+
+.cf-textarea-sm {
+  resize: none;
+  min-height: 72px;
+}
+
+/* Header also compact */
+.cm-right-header {
+  padding: 18px 24px 14px;
+}
+
+/* Remove scrollable from modal */
+.modal-dialog-scrollable .modal-content {
+  overflow: hidden;
+}
+
+.modal-dialog-scrollable .modal-body {
+  overflow: hidden !important;
+}
+
+/* Left panel also tighter */
+.cm-left-panel {
+  padding: 28px 24px;
+}
+
+.cm-left-title {
+  font-size: 1.25rem;
+  margin-bottom: 10px;
+}
+
+.cm-left-sub {
+  font-size: .79rem;
+  margin-bottom: 18px;
+}
+
+.cm-left-stats {
+  padding: 14px;
+  margin-bottom: 18px;
+  gap: 14px;
+}
+
+.cm-stat strong {
+  font-size: 1.1rem;
+}
+
+.cm-stat span {
+  font-size: .68rem;
+}
+
+.cm-badge {
+  margin-bottom: 14px;
+  font-size: .68rem;
+}
+
+.cm-left-contact a {
+  font-size: .78rem;
+}
+
+.cm-left-contact {
+  gap: 8px;
+}
+
   </style>
 </head>
 
@@ -4195,7 +4304,7 @@ footer ul li a i {
   </section>
 
   <!-- ═══ PROCESS ════════════════════════════════════════ -->
-  <section class="sec sec-dark" id="process">
+  <section class="sec sec-dark mt-5" id="process">
     <div class="container">
       <div class="text-center mb-5 rv">
         <span class="sec-tag">How We Work</span>
@@ -4832,37 +4941,52 @@ footer ul li a i {
                 <p style="font-size:.8rem;color:var(--muted)">Fill the form and we'll respond within 24 hours.</p>
                 <button type="button" class="btn-close d-md-none cm-close-mob" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
-          <form id="contactForm" action="https://api.web3forms.com/submit" method="POST" style="padding:20px 28px 28px;flex:1">
+          <form id="contactForm" action="https://api.web3forms.com/submit" method="POST" style="padding:16px 24px 20px;flex:1">
             <input type="hidden" name="access_key" value="3d4f5d7c-cc17-4510-a51a-d208f570b16d">
             <input type="hidden" name="subject" value="New Enquiry from DgLiance Website">
-            <div class="cf-group">
-              <label class="cf-label">Your Name <span class="cf-req">*</span></label>
-              <input type="text" name="name" class="cf-input" placeholder="Enter your full name" required />
+            <!-- Row 1: Name + Phone side by side -->
+            <div class="row g-2 mb-0">
+              <div class="col-6">
+                <div class="cf-group-sm">
+                  <label class="cf-label-sm">Name <span class="cf-req">*</span></label>
+                  <input type="text" name="name" class="cf-input-sm" placeholder="Full name" required />
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="cf-group-sm">
+                  <label class="cf-label-sm">Phone</label>
+                  <input type="tel" name="phone" class="cf-input-sm" placeholder="+91 XXXXX XXXXX" />
+                </div>
+              </div>
             </div>
-            <div class="cf-group">
-              <label class="cf-label">Email Address <span class="cf-req">*</span></label>
-              <input type="email" name="email" class="cf-input" placeholder="your@email.com" required />
+            <!-- Row 2: Email + Service side by side -->
+            <div class="row g-2 mb-0">
+              <div class="col-6">
+                <div class="cf-group-sm">
+                  <label class="cf-label-sm">Email <span class="cf-req">*</span></label>
+                  <input type="email" name="email" class="cf-input-sm" placeholder="your@email.com" required />
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="cf-group-sm">
+                  <label class="cf-label-sm">Service</label>
+                  <select name="service" class="cf-input-sm cf-select-sm">
+                    <option value="">Select service...</option>
+                    <option>Website Design</option>
+                    <option>Website Development</option>
+                    <option>SEO</option>
+                    <option>Google Ads</option>
+                    <option>Meta Ads</option>
+                    <option>Social Media Marketing</option>
+                    <option>Complete Digital Package</option>
+                  </select>
+                </div>
+              </div>
             </div>
-            <div class="cf-group">
-              <label class="cf-label">Phone Number</label>
-              <input type="tel" name="phone" class="cf-input" placeholder="+91 XXXXX XXXXX" />
-            </div>
-            <div class="cf-group">
-              <label class="cf-label">Service Interested In</label>
-              <select name="service" class="cf-input cf-select">
-                <option value="">Select a service...</option>
-                <option>Website Design</option>
-                <option>Website Development</option>
-                <option>SEO</option>
-                <option>Google Ads</option>
-                <option>Meta Ads</option>
-                <option>Social Media Marketing</option>
-                <option>Complete Digital Package</option>
-              </select>
-            </div>
-            <div class="cf-group">
-              <label class="cf-label">Your Message <span class="cf-req">*</span></label>
-              <textarea name="message" class="cf-input cf-textarea" placeholder="Tell us about your business and requirements..." required></textarea>
+            <!-- Row 3: Message -->
+            <div class="cf-group-sm">
+              <label class="cf-label-sm">Message <span class="cf-req">*</span></label>
+              <textarea name="message" class="cf-input-sm cf-textarea-sm" placeholder="Tell us about your business and requirements..." required></textarea>
             </div>
             <div id="cfResult" class="cf-result" style="display:none"></div>
             <button type="submit" class="cf-submit" id="cfSubmitBtn">
