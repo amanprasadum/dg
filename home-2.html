@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -208,7 +207,7 @@ h6 {
 /* ── HERO ────────────────────────────────────────────── */
 .hero {
   background: linear-gradient(120deg, #EDF4FF 0%, #F5F8FF 60%, #EAF7EF 100%);
-  padding: 70px 0 0;
+  padding: 70px 0 70px;
   overflow: hidden;
   position: relative;
 }
@@ -338,21 +337,26 @@ h6 {
   position: relative;
   width: 100%;
   max-width: 520px;
-  margin: 0 auto
+  margin: 0 auto;
+  padding-top: 26px;
+  padding-bottom: 90px;
 }
 
 .hero-img {
   width: 100%;
   max-width: 520px;
-  border-radius: 20px 20px 0 0;
+  aspect-ratio: 540 / 560;
+  border-radius: 20px;
   object-fit: cover;
   display: block;
-  box-shadow: 0 -8px 40px rgba(20, 100, 244, .1);
+  box-shadow: 0 18px 50px rgba(20, 100, 244, .16);
+  border: 1px solid rgba(20, 100, 244, .08);
+  background: #EDF4FF;
 }
 
 .hero-orbit {
   position: absolute;
-  inset: -26px;
+  inset: -26px 0 64px;
   border: 1.5px dashed rgba(20, 100, 244, .22);
   border-radius: 50%/38%;
   pointer-events: none;
@@ -410,7 +414,7 @@ h6 {
 }
 
 .hf1 {
-  bottom: 130px;
+  bottom: 60px;
   left: -10px
 }
 
@@ -1683,7 +1687,7 @@ footer ul li a i { font-size: .76rem }
 }
 
 /* ── GSAP SUPPORT ── */
-.hero-img { will-change: transform; clip-path: inset(0 0 0 0); border-radius: 20px 20px 0 0 }
+.hero-img { will-change: transform }
 .hero-eyebrow, .hero h1, .hero-sub, .trust-pills { will-change: transform, opacity }
 .hf1, .hf2 { will-change: transform }
 
@@ -1846,7 +1850,7 @@ footer ul li a i { font-size: .76rem }
 /* ── TABLET / MOBILE base ── */
 @media (max-width: 991px) {
   .hero {
-    padding: 50px 0 0 !important;
+    padding: 50px 0 60px !important;
   }
   .hero .col-lg-6.text-center {
     padding-bottom: 0 !important;
@@ -1856,9 +1860,13 @@ footer ul li a i { font-size: .76rem }
     display: block !important;
     width: 100% !important;
   }
+  .hero-visual {
+    max-width: 420px;
+    padding-bottom: 70px;
+  }
   .hero-img {
     max-width: 100%;
-    border-radius: 16px 16px 0 0;
+    border-radius: 16px;
   }
 
   #about .row.g-5 {
@@ -1971,7 +1979,7 @@ footer ul li a i { font-size: .76rem }
     <div class="hero-blob hero-blob-accent"></div>
     <div class="hero-particles" id="heroParticles"></div>
     <div class="container">
-      <div class="row align-items-end g-4">
+      <div class="row align-items-center g-4">
         <div class="col-lg-6">
           <div class="hero-eyebrow">
             <i class="bi bi-patch-check-fill text-primary"></i>
@@ -1995,8 +2003,9 @@ footer ul li a i { font-size: .76rem }
           </div>
         </div>
         <div class="col-lg-6 text-center">
-          <div class="position-relative d-inline-block" style="width:100%">
-            <img src="https://placehold.co/540x560/EDF4FF/1464F4?text=DgLiance+Professional" alt="DgLiance Professional" class="hero-img" />
+          <div class="hero-visual">
+            <div class="hero-orbit"></div>
+            <img src="https://placehold.co/540x560/EDF4FF/1464F4?text=DgLiance+Professional" alt="DgLiance Professional" class="hero-img" width="540" height="560" />
             <div class="hero-float hf1">
               <div class="hf-icon" style="background:#E0F9F0"><i class="bi bi-graph-up-arrow" style="color:#00A843"></i></div>
               <div><strong>300%</strong><span>Average Lead Growth</span></div>
@@ -2910,7 +2919,7 @@ footer ul li a i { font-size: .76rem }
     gsap.to('.hf2', { y: 17, duration: 3.4, ease: 'sine.inOut', yoyo: true, repeat: -1, delay: 0.9 });
     gsap.to('.hero-blob-blue', { x: 20, y: -25, duration: 9, ease: 'sine.inOut', yoyo: true, repeat: -1 });
     gsap.to('.hero-blob-green', { x: -18, y: 20, duration: 11, ease: 'sine.inOut', yoyo: true, repeat: -1, delay: -4 });
-    gsap.to('.hero-img', { yPercent: 16, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
+    gsap.to('.hero-img', { yPercent: 10, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
   }());
 
   // Float counters
