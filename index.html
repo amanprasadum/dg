@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -208,7 +207,7 @@ h6 {
 /* ── HERO ────────────────────────────────────────────── */
 .hero {
   background: linear-gradient(120deg, #EDF4FF 0%, #F5F8FF 60%, #EAF7EF 100%);
-  padding: 70px 0 0;
+  padding: 70px 0 70px;
   overflow: hidden;
   position: relative;
 }
@@ -338,21 +337,26 @@ h6 {
   position: relative;
   width: 100%;
   max-width: 520px;
-  margin: 0 auto
+  margin: 0 auto;
+  padding-top: 26px;
+  padding-bottom: 90px;
 }
 
 .hero-img {
   width: 100%;
   max-width: 520px;
-  border-radius: 20px 20px 0 0;
+  aspect-ratio: 540 / 560;
+  border-radius: 20px;
   object-fit: cover;
   display: block;
-  box-shadow: 0 -8px 40px rgba(20, 100, 244, .1);
+  box-shadow: 0 18px 50px rgba(20, 100, 244, .16);
+  border: 1px solid rgba(20, 100, 244, .08);
+  background: #EDF4FF;
 }
 
 .hero-orbit {
   position: absolute;
-  inset: -26px;
+  inset: -26px 0 64px;
   border: 1.5px dashed rgba(20, 100, 244, .22);
   border-radius: 50%/38%;
   pointer-events: none;
@@ -410,7 +414,7 @@ h6 {
 }
 
 .hf1 {
-  bottom: 130px;
+  bottom: 60px;
   left: -10px
 }
 
@@ -1683,7 +1687,7 @@ footer ul li a i { font-size: .76rem }
 }
 
 /* ── GSAP SUPPORT ── */
-.hero-img { will-change: transform; clip-path: inset(0 0 0 0); border-radius: 20px 20px 0 0 }
+.hero-img { will-change: transform }
 .hero-eyebrow, .hero h1, .hero-sub, .trust-pills { will-change: transform, opacity }
 .hf1, .hf2 { will-change: transform }
 
@@ -1845,9 +1849,8 @@ footer ul li a i { font-size: .76rem }
 
 /* ── TABLET / MOBILE base ── */
 @media (max-width: 991px) {
-  /* Hero: remove bottom padding so image sits flush */
   .hero {
-    padding: 50px 0 0 !important;
+    padding: 50px 0 60px !important;
   }
   .hero .col-lg-6.text-center {
     padding-bottom: 0 !important;
@@ -1857,12 +1860,15 @@ footer ul li a i { font-size: .76rem }
     display: block !important;
     width: 100% !important;
   }
+  .hero-visual {
+    max-width: 420px;
+    padding-bottom: 70px;
+  }
   .hero-img {
     max-width: 100%;
-    border-radius: 16px 16px 0 0;
+    border-radius: 16px;
   }
 
-  /* About: tighter vertical gap */
   #about .row.g-5 {
     --bs-gutter-y: 2rem;
   }
@@ -1903,7 +1909,6 @@ footer ul li a i { font-size: .76rem }
   .stat-block { padding: 22px 16px }
   .stat-block strong { font-size: 1.6rem }
 
-  /* Featured cards stacked on mobile — image full width */
   .feat-card { flex-direction: column !important }
   .feat-card-img {
     width: 100% !important;
@@ -1931,32 +1936,11 @@ footer ul li a i { font-size: .76rem }
 
 <body>
 
-  <!-- ═══ TOPBAR ════════════════════════════════════════ -->
-  <!-- <div class="topbar">
-    <div class="container">
-      <div class="d-flex align-items-center justify-content-between flex-wrap gap-2">
-        <div class="d-flex align-items-center gap-4 flex-wrap">
-          <a href="tel:+919123934474"><i class="bi bi-telephone-fill me-1"></i>+91 9123934474</a>
-          <a href="mailto:sales@dgliance.in"><i class="bi bi-envelope-fill me-1"></i>sales@dgliance.in</a>
-          <span><i class="bi bi-geo-alt-fill me-1"></i>Serving Across India</span>
-        </div>
-        <div class="soc d-flex gap-2">
-          <a href="#"><i class="bi bi-facebook"></i></a>
-          <a href="#"><i class="bi bi-instagram"></i></a>
-          <a href="#"><i class="bi bi-linkedin"></i></a>
-          <a href="#"><i class="bi bi-twitter-x"></i></a>
-          <a href="#"><i class="bi bi-youtube"></i></a>
-        </div>
-      </div>
-    </div>
-  </div> -->
-
-
   <!-- ═══ NAVBAR ════════════════════════════════════════ -->
   <nav class="navbar navbar-expand-lg">
     <div class="container">
       <a class="brand-mark" href="#">
-        <img src="dg-logo.png" alt="" srcset="" style="height: 43px; width: 100%;">
+        <img src="logo.png" alt="" srcset="" style="height: 43px; width: 100%;">
       </a>
       <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
         <i class="bi bi-list fs-2" style="color:var(--navy)"></i>
@@ -1995,7 +1979,7 @@ footer ul li a i { font-size: .76rem }
     <div class="hero-blob hero-blob-accent"></div>
     <div class="hero-particles" id="heroParticles"></div>
     <div class="container">
-      <div class="row align-items-end g-4">
+      <div class="row align-items-center g-4">
         <div class="col-lg-6">
           <div class="hero-eyebrow">
             <i class="bi bi-patch-check-fill text-primary"></i>
@@ -2019,8 +2003,9 @@ footer ul li a i { font-size: .76rem }
           </div>
         </div>
         <div class="col-lg-6 text-center">
-          <div class="position-relative d-inline-block" style="width:100%">
-            <img src="hero.png" alt="DgLiance Professional" class="hero-img " />
+          <div class="hero-visual">
+            <div class="hero-orbit"></div>
+            <img src="https://placehold.co/540x560/EDF4FF/1464F4?text=DgLiance+Professional" alt="DgLiance Professional" class="hero-img" width="540" height="560" />
             <div class="hero-float hf1">
               <div class="hf-icon" style="background:#E0F9F0"><i class="bi bi-graph-up-arrow" style="color:#00A843"></i></div>
               <div><strong>300%</strong><span>Average Lead Growth</span></div>
@@ -2041,7 +2026,7 @@ footer ul li a i { font-size: .76rem }
       <div class="row align-items-center g-4 g-lg-5">
         <div class="col-lg-5">
           <div class="about-img-wrap rv">
-            <img src="https://picsum.photos/seed/dgabout/520/480" alt="DgLiance Team" class="about-img" />
+            <img src="https://placehold.co/520x480/EDF4FF/1464F4?text=DgLiance+Team" alt="DgLiance Team" class="about-img" />
             <div class="about-float-card afc1"><strong>100+</strong><span>Projects Delivered</span></div>
             <div class="about-float-card afc2"><strong>Since 2025</strong><span>Serving India</span></div>
           </div>
@@ -2077,7 +2062,7 @@ footer ul li a i { font-size: .76rem }
   <!-- ═══ STRIP ══════════════════════════════════════════ -->
   <div class="strip strip-dark">
     <div class="container">
-      <div class="d-flex align-items-center gap-4 flex-wrap">
+      <div class="d-flex align-items-center justify-content-center gap-4 flex-wrap">
         <span class="strip-label">Trusted in</span>
         <div class="d-flex gap-4 flex-wrap">
           <span class="strip-city"><i class="bi bi-geo-alt me-1"></i>Delhi</span>
@@ -2104,7 +2089,7 @@ footer ul li a i { font-size: .76rem }
       <div class="row g-4">
         <div class="col-sm-6 col-lg-3 rv d1">
           <div class="svc-card">
-            <img src="https://picsum.photos/seed/svc1/400/200" alt="Website Design" class="svc-card-img" />
+            <img src="https://placehold.co/400x200/EDF4FF/1464F4?text=Website+Design" alt="Website Design" class="svc-card-img" />
             <div class="svc-card-body">
               <div class="svc-count-pill">DESIGN SERVICE</div>
               <h5>Website Design</h5>
@@ -2114,7 +2099,7 @@ footer ul li a i { font-size: .76rem }
         </div>
         <div class="col-sm-6 col-lg-3 rv d2">
           <div class="svc-card">
-            <img src="https://picsum.photos/seed/svc2/400/200" alt="Website Development" class="svc-card-img" />
+            <img src="https://placehold.co/400x200/EDF4FF/1464F4?text=Website+Development" alt="Website Development" class="svc-card-img" />
             <div class="svc-card-body">
               <div class="svc-count-pill">DEV SERVICE</div>
               <h5>Website Development</h5>
@@ -2124,7 +2109,7 @@ footer ul li a i { font-size: .76rem }
         </div>
         <div class="col-sm-6 col-lg-3 rv d3">
           <div class="svc-card">
-            <img src="https://picsum.photos/seed/svc3/400/200" alt="SEO" class="svc-card-img" />
+            <img src="https://placehold.co/400x200/E8FAF4/00A843?text=SEO" alt="SEO" class="svc-card-img" />
             <div class="svc-card-body">
               <div class="svc-count-pill">SEO SERVICE</div>
               <h5>Search Engine Optimization</h5>
@@ -2134,7 +2119,7 @@ footer ul li a i { font-size: .76rem }
         </div>
         <div class="col-sm-6 col-lg-3 rv d4">
           <div class="svc-card">
-            <img src="https://picsum.photos/seed/svc4/400/200" alt="Google Ads" class="svc-card-img" />
+            <img src="https://placehold.co/400x200/EDF4FF/1464F4?text=Google+Ads" alt="Google Ads" class="svc-card-img" />
             <div class="svc-card-body">
               <div class="svc-count-pill">ADS SERVICE</div>
               <h5>Google Ads Management</h5>
@@ -2144,7 +2129,7 @@ footer ul li a i { font-size: .76rem }
         </div>
         <div class="col-sm-6 col-lg-3 rv d1">
           <div class="svc-card">
-            <img src="https://picsum.photos/seed/svc5/400/200" alt="Meta Ads" class="svc-card-img" />
+            <img src="https://placehold.co/400x200/E8FAF4/00A843?text=Meta+Ads" alt="Meta Ads" class="svc-card-img" />
             <div class="svc-card-body">
               <div class="svc-count-pill">META ADS</div>
               <h5>Meta Ads Management</h5>
@@ -2154,7 +2139,7 @@ footer ul li a i { font-size: .76rem }
         </div>
         <div class="col-sm-6 col-lg-3 rv d2">
           <div class="svc-card">
-            <img src="https://picsum.photos/seed/svc6/400/200" alt="Social Media" class="svc-card-img" />
+            <img src="https://placehold.co/400x200/EDF4FF/1464F4?text=Social+Media" alt="Social Media" class="svc-card-img" />
             <div class="svc-card-body">
               <div class="svc-count-pill">SOCIAL MEDIA</div>
               <h5>Social Media Marketing</h5>
@@ -2164,7 +2149,7 @@ footer ul li a i { font-size: .76rem }
         </div>
         <div class="col-sm-6 col-lg-3 rv d3">
           <div class="svc-card">
-            <img src="https://picsum.photos/seed/svc7/400/200" alt="Content Marketing" class="svc-card-img" />
+            <img src="https://placehold.co/400x200/E8FAF4/00A843?text=Content+Marketing" alt="Content Marketing" class="svc-card-img" />
             <div class="svc-card-body">
               <div class="svc-count-pill">CONTENT</div>
               <h5>Content Marketing</h5>
@@ -2174,7 +2159,7 @@ footer ul li a i { font-size: .76rem }
         </div>
         <div class="col-sm-6 col-lg-3 rv d4">
           <div class="svc-card">
-            <img src="https://picsum.photos/seed/svc8/400/200" alt="Analytics" class="svc-card-img" />
+            <img src="https://placehold.co/400x200/EDF4FF/1464F4?text=Analytics" alt="Analytics" class="svc-card-img" />
             <div class="svc-card-body">
               <div class="svc-count-pill">ANALYTICS</div>
               <h5>Analytics & Reporting</h5>
@@ -2218,7 +2203,7 @@ footer ul li a i { font-size: .76rem }
     </div>
   </div>
 
-  <!-- ═══ WHY CHOOSE US — UPDATED ════════════════════════ -->
+  <!-- ═══ WHY CHOOSE US ════════════════════════════════════ -->
   <section class="sec sec-bg">
     <div class="container">
       <div class="text-center mb-5 rv">
@@ -2291,7 +2276,7 @@ footer ul li a i { font-size: .76rem }
         <div class="col-lg-6 rv d1">
           <div class="feat-card">
             <div class="feat-card-img">
-              <img src="https://picsum.photos/seed/feat1/220/200" alt="Website Design" />
+              <img src="https://placehold.co/220x200/EDF4FF/1464F4?text=Website+Design" alt="Website Design" />
               <div class="feat-price">₹₹</div>
             </div>
             <div class="feat-body">
@@ -2309,7 +2294,7 @@ footer ul li a i { font-size: .76rem }
         <div class="col-lg-6 rv d2">
           <div class="feat-card">
             <div class="feat-card-img">
-              <img src="https://picsum.photos/seed/feat2/220/200" alt="SEO" />
+              <img src="https://placehold.co/220x200/E8FAF4/00A843?text=SEO" alt="SEO" />
               <div class="feat-price">₹₹</div>
             </div>
             <div class="feat-body">
@@ -2327,7 +2312,7 @@ footer ul li a i { font-size: .76rem }
         <div class="col-lg-6 rv d1">
           <div class="feat-card">
             <div class="feat-card-img">
-              <img src="https://picsum.photos/seed/feat3/220/200" alt="Google Ads" />
+              <img src="https://placehold.co/220x200/EDF4FF/1464F4?text=Google+Ads" alt="Google Ads" />
               <div class="feat-price">₹₹</div>
             </div>
             <div class="feat-body">
@@ -2345,7 +2330,7 @@ footer ul li a i { font-size: .76rem }
         <div class="col-lg-6 rv d2">
           <div class="feat-card">
             <div class="feat-card-img">
-              <img src="https://picsum.photos/seed/feat4/220/200" alt="Social Media" />
+              <img src="https://placehold.co/220x200/E8FAF4/00A843?text=Social+Media" alt="Social Media" />
               <div class="feat-price">₹₹</div>
             </div>
             <div class="feat-body">
@@ -2415,7 +2400,7 @@ footer ul li a i { font-size: .76rem }
         </div>
         <div class="col-lg-6 rv d2">
           <div class="states-img-wrap">
-            <img src="https://picsum.photos/seed/dgindia/600/420" alt="DgLiance serving businesses across India" class="states-hero-img" />
+            <img src="https://placehold.co/600x420/EDF4FF/1464F4?text=Pan-India+Services" alt="DgLiance serving businesses across India" class="states-hero-img" />
             <div class="states-img-badge">
               <i class="bi bi-globe-asia-australia"></i>
               <span>Pan-India Services</span>
@@ -2632,7 +2617,7 @@ footer ul li a i { font-size: .76rem }
       <div class="row g-4">
         <div class="col-md-4 rv d1">
           <div class="blog-card">
-            <img src="https://picsum.photos/seed/blog1/440/220" alt="Blog 1" class="blog-img" />
+            <img src="https://placehold.co/440x220/EDF4FF/1464F4?text=Website+Design" alt="Blog 1" class="blog-img" />
             <div class="blog-body">
               <div class="blog-meta">August 2025 &nbsp;|&nbsp; <a href="#">Website Design</a></div>
               <h5>How a Professional Website Helps Your Business Grow in India</h5>
@@ -2644,7 +2629,7 @@ footer ul li a i { font-size: .76rem }
         </div>
         <div class="col-md-4 rv d2">
           <div class="blog-card">
-            <img src="https://picsum.photos/seed/blog2/440/220" alt="Blog 2" class="blog-img" />
+            <img src="https://placehold.co/440x220/E8FAF4/00A843?text=SEO+Blog" alt="Blog 2" class="blog-img" />
             <div class="blog-body">
               <div class="blog-meta">August 2025 &nbsp;|&nbsp; <a href="#">SEO</a></div>
               <h5>Top SEO Strategies for Small Businesses Across India in 2025</h5>
@@ -2656,7 +2641,7 @@ footer ul li a i { font-size: .76rem }
         </div>
         <div class="col-md-4 rv d3">
           <div class="blog-card">
-            <img src="https://picsum.photos/seed/blog3/440/220" alt="Blog 3" class="blog-img" />
+            <img src="https://placehold.co/440x220/EDF4FF/1464F4?text=Digital+Marketing" alt="Blog 3" class="blog-img" />
             <div class="blog-body">
               <div class="blog-meta">August 2025 &nbsp;|&nbsp; <a href="#">Digital Marketing</a></div>
               <h5>Why Google Ads &amp; Meta Ads Are Essential for Business Growth in India</h5>
@@ -2670,7 +2655,7 @@ footer ul li a i { font-size: .76rem }
     </div>
   </section>
 
-  <!-- ═══ MAP / FIND US — UPDATED IFRAME ═══════════════════ -->
+  <!-- ═══ MAP / FIND US ═══════════════════════════════════ -->
   <section class="sec map-sec">
     <div class="container">
       <div class="row align-items-center g-5">
@@ -2688,7 +2673,6 @@ footer ul li a i { font-size: .76rem }
         </div>
         <div class="col-lg-7 rv d1">
           <div class="map-frame-wrap">
-            <!-- ✅ UPDATED MAP IFRAME -->
             <iframe
               src="https://www.google.com/maps/embed?pb=!3m2!1sen!2sin!4v1788031192867!5m2!1sen!2sin!6m8!1m7!1sI2gzqnyUzdXofWCtFyDioA!2m2!1d25.99741712812342!2d84.45577600424708!3f195.88008270232007!4f20.115294380041888!5f0.8079690270197168"
               width="100%" height="420" style="border:0;" allowfullscreen="" loading="lazy"
@@ -2789,7 +2773,7 @@ footer ul li a i { font-size: .76rem }
         <div class="col-lg-3 col-md-6">
           <div class="foot-brand">
             <div style="background-color:#fff;margin-top:8px;padding:7px;border-radius:12px;" class="footer-logo">
-              <img src="dg-logo.png" alt="" srcset="" class="img-fluid">
+              <img src="logo.png" alt="" srcset="" class="img-fluid">
             </div>
             <p>DgLiance is a team of experienced website designers, developers, and digital marketing experts serving businesses across India since 2025.</p>
             <div class="foot-soc d-flex gap-2 mt-3">
@@ -2935,7 +2919,7 @@ footer ul li a i { font-size: .76rem }
     gsap.to('.hf2', { y: 17, duration: 3.4, ease: 'sine.inOut', yoyo: true, repeat: -1, delay: 0.9 });
     gsap.to('.hero-blob-blue', { x: 20, y: -25, duration: 9, ease: 'sine.inOut', yoyo: true, repeat: -1 });
     gsap.to('.hero-blob-green', { x: -18, y: 20, duration: 11, ease: 'sine.inOut', yoyo: true, repeat: -1, delay: -4 });
-    gsap.to('.hero-img', { yPercent: 16, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
+    gsap.to('.hero-img', { yPercent: 10, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
   }());
 
   // Float counters
